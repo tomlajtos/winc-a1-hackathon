@@ -1,0 +1,1285 @@
+/***************************
+ *      Global styles      *
+ ***************************/
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  color: #000;
+  font-size: 1.6rem;
+  font-family: "Montserrat", sans-serif;
+  background-color: #fbfbfd;
+}
+
+main {
+  padding: 0 10px;
+  grid-area: m;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-rows: auto;
+}
+
+main h2 {
+  font-size: 1.6rem;
+  padding: 0 0 1rem 0;
+}
+
+ul {
+  list-style: none;
+  list-style-image: url(./icons/paw.svg);
+  padding-left: 2rem;
+}
+
+li {
+  padding: 0.3rem 0 0 0.5rem;
+}
+
+li::marker {
+  margin: 0 0 3rem 1rem;
+  font-size: 1.8rem;
+  line-height: 1.6rem;
+  color: red;
+}
+
+section {
+  padding: 2rem 0;
+  border-bottom: 1px solid rgba(125, 125, 125, 0.2);
+}
+
+section > p > a {
+  border-bottom: 1px dotted rgba(0, 0, 0, 0.3);
+  line-height: 1.5rem;
+}
+
+a {
+  text-decoration: none;
+  outline: inherit;
+  color: rgba(0, 0, 0, 0.7);
+  color: #555;
+}
+
+em {
+  font-weight: bolder;
+}
+
+img {
+  width: 100%;
+}
+
+button {
+  border: none;
+  outline: inherit !important;
+}
+
+form {
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+fieldset {
+  border: none;
+}
+
+legend {
+  font-weight: bold;
+}
+
+form > h2 {
+  padding-bottom: 4rem;
+  font-size: 1.6rem;
+  line-height: 2.2rem;
+  text-align: center;
+}
+
+label {
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+}
+
+input {
+  border: none;
+}
+
+.threedots {
+  letter-spacing: 0.2rem;
+}
+
+.gray-text {
+  font-size: 1.2rem;
+  color: #777;
+}
+
+.page-container {
+  min-width: 320px;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr min-content;
+  grid-template-columns: 1fr;
+  grid-template-areas: /* h - header, m - main, f - footer */
+    "h "
+    "m"
+    "f ";
+}
+
+/***************************
+ *   Welcome page styles   *
+ ***************************/
+#welcome-container {
+  width: 100vw;
+  height: 100vh;
+  min-width: 320px;
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 2fr 1fr;
+  grid-template-columns: 1fr;
+  grid-template-areas: /* h - header, m - main */
+    "h "
+    "m ";
+}
+
+#welcome-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(./images/hero-winter-comp_65.jpg);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  filter: brightness(80%);
+  z-index: -1;
+}
+
+#welcome-header {
+  padding-top: 20%;
+  grid-area: h;
+  display: flex;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.5), transparent);
+}
+
+#welcome-title {
+  align-self: flex-start;
+  font-size: 17vw;
+  border: none;
+  font-family: "Caveat", cursive;
+  font-weight: bold;
+  color: #373230;
+  background-color: transparent;
+}
+
+#welcome-nav {
+  display: none;
+}
+
+#welcome-main {
+  grid-area: m;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background-color: transparent;
+}
+
+#start {
+  margin: 8% auto;
+  width: 50%;
+  max-width: 300px;
+  min-width: 160px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid rgba(252, 245, 253, 0.9);
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.25);
+  color: rgb(250, 250, 250);
+  font-size: 3rem;
+  font-weight: bold;
+  line-height: 180%;
+}
+
+#start:focus,
+#start:hover {
+  background-color: rgba(255, 255, 255, 0.55);
+  color: #373230;
+}
+
+/****************************
+ *    Page header styles    * 
+ ****************************/
+/* The banner part is assembled from several overlapping elements with fixed height and flexible width values:
+  * - <h1>: fixed height == banner-height, lowest z-index 
+  * - #green-banner-bg: 1 z-level up from <h1>, empty box
+  * - .banner-shapes: 2 z-level up from <h1>, d-flex, contains 2 images :  bg-shape-left/-right
+  * - .banner-img: 2z-level up from <h1>
+  * !POTENTIAL ISSUE: alignment of box elements might break during zoom
+  * SOLUTION: overlapping layout design, without overlap thin lines appear on box boundaries,
+  * this is prevented (to my best assessment) by the design below  */
+
+.page-header {
+  grid-area: h;
+  display: grid;
+  grid-template-rows: 60px 70px min-content;
+  grid-template-columns: 1fr;
+  grid-template-areas: /* i - image, t - title, n - navigation*/
+    "i "
+    "t "
+    "n ";
+}
+
+/* banner styles */
+.banner-title {
+  height: 130px;
+  padding-bottom: 15px;
+  grid-area: t;
+  align-self: end;
+  display: flex; /* to align text in fixed height <h1> : display-flex, a-items: end, j-content: center */
+  justify-content: center;
+  align-items: end;
+  font-family: "Caveat", cursive;
+  font-size: 4.5rem;
+  line-height: 4.5rem;
+  color: #ddd;
+  background-color: #373230;
+}
+
+#green-banner-bg {
+  width: 58%;
+  height: 59px;
+  grid-area: i;
+  justify-self: center;
+  background-color: rgba(163, 179, 50, 1);
+  z-index: 1;
+}
+
+.banner-shapes {
+  width: 62%;
+  height: 60px;
+  grid-area: i;
+  justify-self: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: transparent;
+  z-index: 2;
+}
+
+#bg-shape-left,
+#bg-shape-right {
+  width: 30%;
+  height: 60px;
+}
+
+.banner-img {
+  margin-top: 20px;
+  width: auto;
+  height: 50px;
+  grid-area: i;
+  justify-self: center;
+  z-index: 2;
+}
+
+/* navigation menu styles */
+.page-header nav {
+  padding: 10px 0;
+  grid-area: n;
+  font-size: 2rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: #f2f2f3;
+}
+
+.page-header ul {
+  padding-right: 20px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-header li {
+  padding: 0.4rem 0;
+}
+
+.page-header a {
+  padding: 0.3rem 1.5rem;
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.page-header a:hover {
+  color: #ffa136;
+}
+
+.page-header a:focus {
+  font-weight: bolder !important;
+  color: #ffa136 !important;
+  box-shadow: inset 0 0 3px, 0px 0px 3px !important;
+  border-radius: 1.5rem !important;
+}
+
+/***************************
+ *   Main content styles   *
+ ***************************/
+.about-container {
+  margin: 0 auto;
+}
+
+.blog-container {
+  margin: 0 auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+}
+
+#intro-about,
+#sum-up,
+#adopt {
+  text-align: justify;
+}
+
+#intro-about > h2,
+#intro-myblog > h2 {
+  text-align: center;
+  font-size: 2rem;
+  padding: 1rem 0 2rem 0;
+}
+
+#adopt {
+  border: none;
+}
+
+.img-galery {
+  width: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr;
+}
+
+#pictures-me {
+  width: 100%;
+  max-width: fit-content;
+  padding: 2px;
+  display: grid;
+  grid-template-rows: repeat(9, 1fr);
+  grid-template-columns: repeat(9, 1fr);
+  grid-gap: 2px;
+  background-color: #efefef;
+  border: solid 1px #cfcfcf;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+#me1-img {
+  grid-area: 1 / 1 / 4 / 4;
+}
+#me2-img {
+  grid-area: 1 / 4 / 4 / 7;
+}
+#me3-img {
+  grid-area: 1 / 7 / 4 / 10;
+}
+#me4-img {
+  grid-area: 4 / 1 / 7 / 4;
+}
+#me5-img {
+  grid-area: 4 / 4 / 7 / 7;
+}
+#me6-img {
+  grid-area: 4 / 7 / 7 / 10;
+}
+#me7-img {
+  grid-area: 7 / 1 / 10 / 4;
+}
+#me8-img {
+  grid-area: 7 / 4 / 10 / 7;
+}
+#me9-img {
+  grid-area: 7 / 7 / 10 / 10;
+}
+
+#me1-img img {
+  border-radius: 9px 0 0 0;
+}
+#me3-img img {
+  border-radius: 0 9px 0 0;
+}
+#me7-img img {
+  border-radius: 0 0 0 9px;
+}
+#me9-img img {
+  border-radius: 0 0 9px 0;
+}
+
+.grid-img {
+  width: 100%;
+  max-width: 350px;
+}
+
+.grid-img-wrap {
+  display: flex; /* to align <a> and it's child image - otherwise <a> text-content is partially visible (even without text) below the image */
+  flex-flow: column no-wrap;
+  justify-items: center;
+  background: transparent;
+}
+
+.grid-img-wrap > a {
+  font-size: 0;
+  line-height: 0; /* this and parent set to display flex will hide the <a> text-content area */
+}
+
+/* Blog styles */
+.blogpost {
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+.blogpost-title > a {
+  color: #000;
+  font-weight: bold;
+}
+
+#intro-myblog {
+  text-align: justify;
+}
+
+#no1-post {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 5fr 1fr;
+}
+
+#no1-thumbnail {
+  padding-bottom: 1rem;
+  grid-area: 2 / 1 / 3 / 3;
+}
+
+#no1-title {
+  grid-area: 1 / 1 / 2 / 3;
+  line-height: 2.5rem;
+  font-size: 1.6rem;
+}
+
+#no1-lorem {
+  display: none;
+}
+
+.no1-prize {
+  grid-area: 1 / 2 / 2 / 3;
+  justify-self: end;
+  align-self: stretch;
+}
+
+.blogpost-preview {
+  grid-area: 3 / 1 / 4 / 3;
+}
+
+.blogpost-preview > p {
+  text-align: justify;
+}
+
+/* Contact form styles */
+.large-input {
+  margin-top: 0.5rem;
+  padding-left: 0.5rem;
+  width: 100%;
+  display: block;
+  outline: inherit !important;
+  line-height: 2.5rem;
+  font-size: 1.6rem;
+  border-radius: 0 !important;
+  box-sizing: border-box;
+  background-color: #fbfbfd !important;
+}
+
+.small-input {
+  margin: 0;
+  padding: 0;
+}
+
+input[type="file"]::file-selector-button {
+  margin-right: 5%;
+  padding: 0 1rem;
+  height: 2.5rem;
+  font-family: inherit;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #ddd;
+  border: none;
+  border-radius: 3px !important;
+  background-color: #54504f;
+}
+
+input[type="file"]::file-selector-button:hover {
+  color: #54504f;
+  background-color: lightgray;
+  border: 2px solid #54504f;
+}
+
+::placeholder {
+  color: #555;
+  font-size: 1.4rem;
+}
+
+.input-container {
+  margin-bottom: 2rem;
+}
+
+.name-input,
+.email-input {
+  border-bottom: 1px solid #000 !important;
+}
+
+.form-separator {
+  margin: 3rem auto;
+  width: 90%;
+  height: 2px;
+  border: none;
+  background-color: #d5d5d5;
+}
+
+.inline {
+  padding: 0.2rem 0.5rem;
+  height: fit-content;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: baseline;
+  column-gap: 0.75rem;
+}
+
+.file-upload {
+  margin: 1rem 0 1rem;
+  line-height: 3rem;
+  font-family: inherit;
+  color: #555;
+  vertical-align: middle;
+}
+
+.form-button {
+  margin: 2rem 0;
+  padding: 0.75rem 1rem;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #fff;
+  border-radius: 3px;
+}
+
+.survey-note {
+  margin-bottom: 2rem;
+}
+
+.note-link {
+  padding: 0rem 0.5rem;
+  font-weight: bold;
+  background-color: #ccc;
+  border-radius: 0.3rem;
+}
+
+.survey-question {
+  margin: 0 0 0.5rem;
+}
+
+.button-group {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  column-gap: 0.5rem;
+}
+
+#dropdown-input {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #000;
+  color: #777;
+}
+
+#message {
+  border: 1px solid black;
+  resize: vertical;
+}
+
+#consent-label {
+  align-items: center;
+}
+
+#submit {
+  width: 45%;
+  background-color: rgba(163, 179, 50, 1);
+}
+
+#reset {
+  width: 22%;
+  background-color: rgba(253, 59, 50, 1);
+}
+
+/* Coming soon page content styles */
+/* Page only loads when a blog preview title is clicked on */
+#coming-soon {
+  margin: 30px auto;
+  padding: 20px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border: 1px solid #ff2334;
+  border-radius: 10px;
+  background-color: #ff8a8a;
+}
+
+#coming-soon > h2 {
+  font-size: 3rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+#coming-soon > p {
+  padding: 0 0 2rem 0;
+  font-size: 2rem;
+}
+
+#coming-soon > img {
+  border-radius: 5px;
+}
+
+/***************************
+ *      Footer styles      *
+ ***************************/
+.page-footer {
+  max-width: 100%;
+  padding: 10px;
+  grid-area: f;
+  display: grid;
+  grid-template-rows: auto 40px auto 25px;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-areas:
+    "d d d d d " /* d - donate, i - icons, a - address, c - copy */
+    ". i i i  ."
+    "a a a a a "
+    "c c c c c ";
+  font-size: 1.2rem;
+  text-align: center;
+  color: #ddd;
+  background-color: #484848;
+}
+
+.page-footer a,
+#email {
+  color: #fff;
+  font-weight: 600;
+}
+
+#donate-text {
+  grid-area: d;
+}
+
+.donate-icons {
+  grid-area: i;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  column-gap: 30px;
+  align-items: center;
+}
+
+.icon {
+  height: 25px;
+}
+
+.page-footer address {
+  grid-area: a;
+  font-style: normal;
+}
+
+#copy {
+  padding-top: 1rem;
+  grid-area: c;
+}
+
+/****************************
+ * @media styles start here *
+ ****************************/
+/* @media rules for different screen width and orientation */
+@media screen and (min-width: 300px) {
+  .no1-prize {
+    width: 2rem; /* for the edge-case of very old smartphones with small screens */
+    height: 2rem;
+  }
+}
+
+@media screen and (min-width: 375px) {
+  .no1-prize {
+    width: 3rem;
+    height: 3rem;
+  }
+}
+
+@media screen and (min-width: 568px), (orientation: landscape) {
+  main {
+    padding: 0 30px;
+  }
+
+  form > h2 {
+    padding-bottom: 4rem;
+    font-size: 2rem;
+    line-height: 2.5rem;
+  }
+
+  .page-header {
+    grid-template-rows: 100px min-content;
+    grid-template-columns: 45% 55%;
+    grid-template-areas:
+      " t i "
+      " n n ";
+  }
+
+  .banner-title {
+    width: 100%;
+    height: 100px;
+    padding: 0 calc(55vw - 30px) 40px 30px; /* needs padding to achieve full width and vertical overlap | calc() for padding-R is to compensate for padding-L > keeps header elements in place */
+    align-self: stretch;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  #green-banner-bg {
+    width: 95%;
+    height: 100px;
+  }
+
+  .banner-shapes {
+    width: 100%;
+    height: 100px;
+  }
+
+  #bg-shape-left,
+  #bg-shape-right {
+    height: 100px;
+  }
+
+  .banner-img {
+    margin: 35px 0 0 0;
+    height: 80px;
+  }
+
+  .page-header > nav {
+    padding: 0;
+    min-height: 45px;
+    border-bottom: none;
+    background-color: #54504f;
+  }
+
+  .page-header ul {
+    padding: 0 1.5rem;
+    flex-direction: row;
+  }
+
+  .page-header li {
+    padding: 1rem 0;
+  }
+
+  .page-header a {
+    padding: 0 1.5rem;
+    color: #f2f2f3;
+  }
+
+  .about-container,
+  .blog-container {
+    margin: 20px auto;
+    max-width: 560px;
+    row-gap: 20px;
+    column-gap: 10px;
+  }
+
+  /* blog start */
+  .blogpost {
+    padding: 0;
+    max-width: 274px;
+    max-height: 323px;
+    border: none;
+    box-shadow: -0.5rem 0.2rem 0.5rem 0 #bbb;
+  }
+
+  .blog-thumbnail {
+    width: 274px;
+    height: 274px;
+    vertical-align: bottom;
+  }
+
+  .blogpost-title {
+    min-height: 44px;
+    padding: 0 0 0.5rem 0.5rem;
+    max-width: 400px;
+    font-size: 1.8rem;
+    line-height: 2rem;
+  }
+
+  #intro-myblog {
+    margin-bottom: 1rem;
+    max-width: 1240px;
+    box-shadow: none;
+  }
+
+  #no1-post {
+    max-width: 1240px;
+    margin: 0 auto;
+    resize: horizontal;
+    grid-template-rows: 49px 1fr;
+    grid-template-columns: 274px 1fr;
+    grid-template-areas:
+      "t t" /* t - title, i - image, txt - text */
+      "i txt"
+      "i txt";
+    row-gap: 0;
+  }
+
+  #no1-title {
+    padding: 0 0 0.5rem 0.5rem;
+    grid-area: t;
+    font-size: 2rem;
+  }
+
+  #no1-thumbnail {
+    padding: 0;
+    grid-area: i;
+  }
+
+  #no1-lorem {
+    display: block;
+  }
+
+  .no1-prize {
+    margin-right: 0.5rem;
+    width: 4rem;
+    height: 4rem;
+    grid-area: t;
+  }
+
+  .blogpost-preview {
+    max-height: 273px;
+    margin: 0 0 0 1rem;
+    grid-area: txt;
+    text-align: justify;
+    line-height: 2rem;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .blogpost-preview > p {
+    padding-bottom: 1rem;
+  }
+
+  .text-blur {
+    height: 2.5rem;
+    grid-area: txt;
+    align-self: end;
+    z-index: 2;
+    background: linear-gradient(180deg, transparent, #fdfdfd 80%);
+  }
+  /* blog end */
+
+  #coming-soon {
+    max-width: 50%;
+  }
+
+  .page-footer {
+    padding: 2rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  section {
+    padding: 2rem 1rem;
+    margin: 0;
+  }
+
+  .page-header {
+    grid-template-columns: 55% 45%;
+  }
+
+  .banner-title {
+    padding: 0 calc(45vw - 30px) 40px 30px;
+  }
+
+  .about-container,
+  .blog-container {
+    max-width: 700px;
+  }
+
+  /* blog start */
+  .blogpost {
+    max-width: 345px;
+    max-height: 394px;
+  }
+
+  .blog-thumbnail {
+    height: 345px;
+    width: 345px;
+  }
+
+  #no1-post {
+    grid-template-columns: 345px 1fr;
+  }
+
+  .blogpost-preview {
+    max-height: 345px;
+  }
+  /* blog end */
+
+  .page-footer {
+    grid-template-rows: auto 60px auto 25px;
+    font-size: 1.3rem;
+  }
+
+  .donate-icons {
+    column-gap: 50px;
+  }
+
+  .icon {
+    height: 35px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .page-container {
+    grid-template-rows: auto 1fr min-content;
+    grid-template-columns: 80px repeat(10, 1fr) 80px;
+    grid-template-areas:
+      "h h h h h h h h h h h h"
+      ". m m m m m m m m m m ."
+      "f f f f f f f f f f f f";
+    background-color: black;
+    background-color: #dfdfdf;
+  }
+
+  main {
+    padding: 0 20px;
+    background-color: #fbfbfd;
+  }
+
+  .page-header {
+    grid-template-columns: 65% 35%;
+  }
+
+  .banner-title {
+    padding: 0 calc(35vw - 30px) 40px 30px;
+    font-size: 5.5rem;
+    line-height: 5.5rem;
+  }
+
+  #pictures-me {
+    margin-top: 10px;
+    justify-self: center;
+  }
+
+  .about-container,
+  .blog-container {
+    max-width: 820px;
+    margin-bottom: 40px;
+    gap: 20px;
+  }
+
+  /* blog start */
+  .blogpost {
+    max-width: 400px;
+    max-height: 449px;
+  }
+
+  .blog-thumbnail {
+    height: 400px;
+    width: 400px;
+  }
+
+  .blogpost-title {
+    font-size: 2rem;
+    line-height: 2.2rem;
+  }
+
+  #intro-about > h2,
+  #intro-myblog > h2 {
+    font-size: 3rem;
+  }
+
+  #no1-post {
+    grid-template-columns: 400px 1fr;
+  }
+
+  #no1-title {
+    max-width: 700px;
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
+
+  .blogpost-preview {
+    margin-left: 20px;
+    max-height: 400px;
+  }
+
+  .text-blur {
+    height: 3rem;
+  }
+  /* blog end */
+}
+
+@media screen and (min-width: 1440px) {
+  #welcome-title {
+    font-size: 6vw;
+  }
+
+  #welcome-header {
+    padding-top: 4%;
+  }
+
+  #start {
+    font-size: 4rem;
+  }
+
+  main h2 {
+    font-size: 1.8rem;
+  }
+
+  li::marker {
+    margin: 0 0 3rem 1rem;
+    font-size: 1.9rem;
+    line-height: 1.6rem;
+    color: red;
+  }
+
+  .page-header {
+    grid-template-rows: 120px min-content;
+  }
+
+  .banner-title {
+    height: 120px;
+    align-items: center;
+    font-size: 7rem;
+    line-height: 7rem;
+  }
+
+  #green-banner-bg {
+    height: 120px;
+  }
+
+  .banner-shapes {
+    height: 120px;
+  }
+
+  #bg-shape-left,
+  #bg-shape-right {
+    height: 120px;
+  }
+
+  .banner-img {
+    margin: 31px 0 0 0;
+    height: 110px;
+  }
+
+  .page-header > nav {
+    padding: 0;
+    min-height: 50px;
+    font-size: 2.2rem;
+    line-height: 2.2rem;
+  }
+
+  .page-header li {
+    padding: 1.4rem 0;
+  }
+
+  .page-header a {
+    padding: 0 1.5rem;
+    color: #f2f2f3;
+  }
+
+  .about-container,
+  .blog-container {
+    max-width: 1240px;
+    margin-bottom: 60px;
+    row-gap: 40px;
+  }
+
+  #no1-post {
+    max-width: 820px;
+  }
+
+  .page-footer {
+    padding: 2rem 0 3rem 0;
+    grid-template-rows: auto auto 40px;
+    grid-template-columns: 80px repeat(10, 1fr) 80px;
+    grid-template-areas:
+      ". d d d d d d d i i i ."
+      ". a a a a a a a i i i ."
+      ". c c c c c c c i i i .";
+    row-gap: 10px;
+    font-size: 1.4rem;
+    text-align: left;
+  }
+
+  .donate-icons {
+    justify-content: flex-end;
+    align-items: start;
+  }
+
+  .icon {
+    height: 50px;
+  }
+
+  #copy {
+    padding-top: 2rem;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  .page-container {
+    grid-template-areas:
+      "h h h h h h h h h h h h"
+      ". . m m m m m m m m . ."
+      "f f f f f f f f f f f f";
+  }
+
+  #bg-shape-left,
+  #bg-shape-right {
+    height: 120px;
+    width: 38%;
+  }
+
+  .page-footer {
+    grid-template-areas:
+      ". . d d d d d d i i . ."
+      ". . a a a a a a i i . ."
+      ". . c c c c c c i i . .";
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  body {
+    font-size: 2rem;
+  }
+
+  main h2 {
+    font-size: 2.5rem;
+    padding: 0 0 1rem 0;
+  }
+
+  form > h2 {
+    padding-bottom: 4rem;
+    line-height: 3rem;
+  }
+
+  .page-container {
+    grid-template-areas:
+      "h h h h h h h h h h h h"
+      ". . . m m m m m m . . ."
+      "f f f f f f f f f f f f";
+  }
+
+  .page-header {
+    grid-template-rows: 140px min-content;
+    grid-template-columns: 70% 30%;
+  }
+
+  .banner-title {
+    height: 140px;
+    padding: 0 calc(30vw - 100px) 40px 100px;
+    font-size: 9rem;
+    line-height: 9rem;
+  }
+
+  #green-banner-bg {
+    width: 92%;
+    height: 140px;
+  }
+
+  .banner-shapes {
+    width: 100%;
+    height: 140px;
+  }
+
+  #bg-shape-left,
+  #bg-shape-right {
+    height: 140px;
+  }
+
+  .banner-img {
+    margin: 43px 0 0 0;
+    height: 120px;
+  }
+
+  .page-header > nav {
+    padding: 0;
+    min-height: 55px;
+    font-size: 2.5rem;
+    line-height: 2.5rem;
+  }
+
+  .page-header ul {
+    padding: 0 7rem;
+  }
+
+  .page-header li {
+    padding: 1.5rem 0;
+  }
+
+  .page-header a {
+    padding: 0 3rem;
+    color: #f2f2f3;
+  }
+
+  .page-footer {
+    grid-template-areas:
+      ". . . d d d d i i . . ."
+      ". . . a a a a i i . . ."
+      ". . . c c c c i i . . .";
+  }
+}
+
+/* @media rules for the welcome page except for a few which are in the screen width section
+ * used min-aspect-ratio rule instead of (orientation : landscape) because header and button locations can be 
+ * non-ideal using just a single setting on displays of different aspect ratios */
+@media (min-aspect-ratio: 4/3) {
+  #welcome-header {
+    padding-top: 7%;
+  }
+
+  #welcome-title {
+    font-size: 8vw;
+    line-height: 8vw;
+  }
+
+  #start {
+    background: rgba(0, 0, 0, 0.15);
+    color: rgba(250, 250, 250, 1);
+  }
+}
+
+@media (min-aspect-ratio: 16/10) {
+  #welcome-header {
+    padding-top: 2%;
+  }
+
+  #welcome-title {
+    font-size: 8vw;
+  }
+
+  #start {
+    margin-bottom: 3%;
+    width: 20%;
+    background: rgba(0, 0, 0, 0.35);
+  }
+}
+
+@media (min-aspect-ratio: 21/9) {
+  #welcome-header {
+    padding-top: 1%;
+  }
+}

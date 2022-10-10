@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>Penncil's blog | About</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="contact" class="page-container">
+      <header class="page-header">
+        <h1 class="banner-title">Penncil's blog</h1>
+        <div class="banner-shapes">
+          <img id="bg-shape-left" src="images/header-bg-L_W.png" alt="" />
+          <img id="bg-shape-right" src="images/header-bg-R_W.png" alt="" />
+        </div>
+        <div id="green-banner-bg"></div>
+        <img
+          class="banner-img"
+          src="./images/doxie-head-large-resp-c.png"
+          alt="drawing of dachshund puppy peaking from behind the page-header background"
+        />
+        <nav>
+          <ul>
+            <li>
+              <a id="welcome-tab" class="nav-link" href="./index.html"
+                >Welcome</a
+              >
+            </li>
+            <li>
+              <a id="about-tab" class="nav-link" href="./about.html"
+                >About Me</a
+              >
+            </li>
+            <li>
+              <a id="blog-tab" class="nav-link" href="./blog.html">My Blog</a>
+            </li>
+            <li>
+              <a id="contact-tab" class="nav-link" href="./contact.html"
+                >Contact Me</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <main>
+        <form
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          autocomplete="off"
+        >
+          <h2>
+            Ask questions, share your thoughts or tell me something I never
+            heard of!
+          </h2>
+          <fieldset id="contact-minimum">
+            <div class="input-container">
+              <label for="name"
+                >Name
+                <input
+                  id="name"
+                  class="large-input name-input"
+                  type="text"
+                  name="name"
+                  title="Please type your name here (first name at least)"
+                  placeholder="first name or full name"
+                  required
+                />
+              </label>
+            </div>
+            <div class="input-container">
+              <label for="emailAddress"
+                >Email
+                <input
+                  id="emailAddress"
+                  class="large-input email-input"
+                  type="email"
+                  name="email"
+                  placeholder="example@mail.com"
+                  required
+                />
+              </label>
+            </div>
+            <div class="input-container">
+              <label for="message" id="message-label">
+                Please write your message below
+                <textarea
+                  id="message"
+                  class="large-input"
+                  name="message"
+                  placeholder="Type away..."
+                  rows="5"
+                  required
+                ></textarea>
+              </label>
+            </div>
+          </fieldset>
+          <fieldset id="photo-upload">
+            <div class="input-container">
+              <label for="pet-photo">Send me a photo of your pet</label>
+              <p class="contact-note gray-text">
+                (If you consent, I might publish your photo on my blog)
+              </p>
+              <input
+                id="pet-photo"
+                class="large-input file-upload"
+                type="file"
+                accept="image/*"
+                name="pet-photo"
+              />
+              <label
+                id="consent-label"
+                for="photo-consent"
+                class="inline gray-text"
+              >
+                <input
+                  id="photo-consent"
+                  class="small-input"
+                  type="checkbox"
+                  name="photo-consent"
+                  value="yes"
+                />
+                This photo can be published on this website.
+              </label>
+            </div>
+            <p class="inquiry">
+              Are you in the mood for answering a few questions?
+            </p>
+            <p class="contact-note gray-text">
+              (It is totally optional and you can answer as many of them as
+              you'd like or simply just
+              <a class="note-link" href="#submit">skip</a> the following part)
+            </p>
+          </fieldset>
+          <hr class="form-separator" />
+          <fieldset id="contact-survey">
+            <legend>Here are a few questions to help me improve my blog</legend>
+            <p class="survey-note gray-text">
+              (In case you have more suggestions, please provide them above, in
+              the section for
+              <a class="note-link" href="#message-label">messages</a>)
+            </p>
+            <div class="input-container">
+              <p class="survey-question">Do you have a canine family member?</p>
+              <select id="dropdown-input" class="large-input" name="has-dog">
+                <option value="">Choose one of the following options</option>
+                <option value="no">No, I'm not cool enough</option>
+                <option value="planning">No, but not for too long</option>
+                <option value="one">Yes, I have one</option>
+                <option value="two">Yes, I have two</option>
+                <option value="three">Yes, I have three</option>
+                <option value="many">Yes, I have...umm...many</option>
+              </select>
+            </div>
+            <div class="checkbox-group input-container">
+              <p class="survey-question">
+                Which of the following topics and features do you find
+                interesting?
+              </p>
+              <label class="inline checkbox-label" for="topic-adoption">
+                <input
+                  id="topic-adoption"
+                  class="small-input"
+                  type="checkbox"
+                  name="future-topic"
+                  value="dog-adoption"
+                />Dog adoption
+              </label>
+              <label class="inline checkbox-label" for="topic-language">
+                <input
+                  id="topic-language"
+                  class="small-input"
+                  type="checkbox"
+                  name="future-topic"
+                  value="dog-language"
+                />The language of dogs
+              </label>
+              <label class="inline checkbox-label" for="topic-travel">
+                <input
+                  id="topic-travel"
+                  class="small-input"
+                  type="checkbox"
+                  name="future-topic"
+                  value="dog-travel"
+                />Traveling with dogs
+              </label>
+              <label class="inline checkbox-label" for="topic-tips">
+                <input
+                  id="topic-tips"
+                  class="small-input"
+                  type="checkbox"
+                  name="future-topic"
+                  value="dog-tips"
+                />Useful tips about dogs for humans
+              </label>
+              <label class="inline checkbox-label" for="topic-products">
+                <input
+                  id="topic-products"
+                  class="small-input"
+                  type="checkbox"
+                  name="future-topic"
+                  value="product-reviews"
+                />Product reviews
+              </label>
+              <label class="inline checkbox-label" for="feature-gallery">
+                <input
+                  id="feature-gallery"
+                  class="small-input"
+                  type="checkbox"
+                  name="future-topic"
+                  value="visitors-gallery"
+                />Stories and photo gallery of reader's dogs
+              </label>
+            </div>
+            <div class="radio-group input-container">
+              <p class="survey-question">
+                Would you like to receive a weekly newsletter?
+              </p>
+              <label class="inline radio-label" for="no-news">
+                <input
+                  id="no-news"
+                  class="small-input"
+                  type="radio"
+                  name="newsletter"
+                  value="no-news"
+                />No thanks
+              </label>
+              <label class="inline radio-label" for="adoption-news">
+                <input
+                  id=""
+                  class="small-input"
+                  type="radio"
+                  name="newsletter"
+                  value="adoption-news"
+                />Yes, about dogs who're looking for homes
+              </label>
+              <label class="inline radio-label" for="blog-news">
+                <input
+                  id="blog-news"
+                  class="small-input"
+                  type="radio"
+                  name="newsletter"
+                  value="blog-news"
+                />Yes, about new blog-posts and features
+              </label>
+              <label class="inline radio-label" for="all-news">
+                <input
+                  id="all-news"
+                  class="small-input"
+                  type="radio"
+                  name="newsletter"
+                  value="all-news"
+                />Yes, send me whatever. I have plenty of time
+              </label>
+            </div>
+          </fieldset>
+          <div class="button-group">
+            <button id="submit" class="form-button" type="submit">
+              Submit
+            </button>
+            <button id="reset" class="form-button" type="reset">Reset</button>
+          </div>
+        </form>
+      </main>
+      <footer class="page-footer">
+        <div id="donate-text">
+          <p>
+            Do you think I'm irresistible and you'd like to spoil me? No
+            problem, just click on one of the icons for suggestions.
+          </p>
+        </div>
+        <div class="donate-icons">
+          <div id="penutb-icon" class="icon-url-wrap">
+            <a
+              class="icon-url"
+              href="https://depindakaaswinkel.nl/shop/pindakaas-naturel/"
+            >
+              <img
+                class="icon"
+                src="./icons/peanut-icon-w.svg"
+                alt="icon, drawing of a peanut butter jar"
+              />
+            </a>
+          </div>
+          <div id="treat-icon" class="icon-url-wrap">
+            <a
+              class="icon-url"
+              href="https://www.edgardcooper.com/en/products/doggy-dental-mint-strawberry"
+            >
+              <img
+                class="icon"
+                src="./icons/dog-treat-w.svg"
+                alt="icon, drawing of a peanut butter jar"
+              />
+            </a>
+          </div>
+          <div id="banana-icon" class="icon-url-wrap">
+            <a class="icon-url" href="https://www.ekoplaza.nl/nl/merk/bionana">
+              <img
+                class="icon"
+                src="./icons/banana-icon-w.svg"
+                alt="icon, drawing of a peanut butter jar"
+              />
+            </a>
+          </div>
+        </div>
+        <address>
+          <p>
+            For my shipping address you can ask me via email at
+            <a id="email" href="mailto:penn.cil@pm.com">penn.cil@pm.com</a> or
+            you can use the built-in <a href="./contact.html">contact-form</a>.
+          </p>
+        </address>
+        <div id="copy">
+          <p>
+            <span>&COPY;</span> Icons used on this page are from
+            <a href="https://icons8.com/">Icons8</a>
+          </p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
